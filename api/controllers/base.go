@@ -44,6 +44,8 @@ func (a *App) initializeRoutes() {
 
 	a.Router.HandleFunc("/", home).Methods("GET")
 	a.Router.HandleFunc("/movies", a.CreateMovie).Methods("POST")
+	a.Router.HandleFunc("/movies", a.GetMovies).Methods("GET")
+	a.Router.HandleFunc("/movies/{id:[0-9]+}", a.GetMovieByID).Methods("GET")
 }
 
 func (a *App) RunServer() {
@@ -52,5 +54,5 @@ func (a *App) RunServer() {
 }
 
 func home(w http.ResponseWriter, r *http.Request) { // this is the home route
-	responses.JSON(w, http.StatusOK, "Welcome To Ivents")
+	responses.JSON(w, http.StatusOK, "Welcome To ProjectA API")
 }
