@@ -8,6 +8,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" //postgres
+	"github.com/rs/cors"
+
 
 	"github.com/MieGorenk/data-api/api/models"
 	"github.com/MieGorenk/data-api/api/responses"
@@ -49,8 +51,16 @@ func (a *App) initializeRoutes() {
 }
 
 func (a *App) RunServer() {
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+		AllowedMethods: []string{"OPTIONS", "GET", "POST", "PUT"},
+    	AllowedHeaders: []string{"Content-Type"},
+    	Debug:          true,
+	})
+
+	handler := c.Handler(a.Router)
 	log.Printf("\nServer starting on port 5000")
-	log.Fatal(http.ListenAndServe(":5000", a.Router))
+	log.Fatal(http.ListenAndServe(":5000", handler))
 }
 
 func home(w http.ResponseWriter, r *http.Request) { // this is the home route
