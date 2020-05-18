@@ -54,7 +54,7 @@ func (a *App) RunServer() {
 	c := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
 		AllowedMethods: []string{"OPTIONS", "GET", "POST", "PUT"},
-    	AllowedHeaders: []string{"*"},
+    	AllowedHeaders: []string{"Content-Type"},
     	Debug:          true,
 	})
 

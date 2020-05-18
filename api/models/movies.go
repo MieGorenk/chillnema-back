@@ -13,6 +13,12 @@ type Movie struct {
 	Rated    string `gorm:"type:varchar(75)"            json:rated`
 	Plot     string `gorm:"type:varchar(255)"            json:plot`
 	Source   string `gorm:"type:varchar(300):not_null" json:source`
+	Subtitle string `gorm:"type:varchar(300)"        json:subtitle`
+	Rating   string `gorm:"type:varchar(300)"          json:rating`
+	Director string `gorm:"type:varchar(100)"        json:director`
+	Poster   string `gorm:"type:varchar(300)"          json:poster`
+	Trailer  string `gorm:"type:varchar(300)"         json:trailer`
+	Genre    string `gorm:"type:varchar(100)"           json:genre`
 }
 
 // SaveMovie saving movie obj to database
